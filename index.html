@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>날 쏴줘.. &#123;&#123;user&#125;&#125;.</title>
+<meta name="description" content="날 쏴줘.. &#123;&#123;user&#125;&#125;. 메인 PV · 채아라 캐릭터 PV">
+<meta name="theme-color" content="#0a0b10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="날 쏴줘.. &#123;&#123;user&#125;&#125;.">
+<meta property="og:description" content="메인 PV · 채아라 캐릭터 PV">
+<meta property="og:image" content="main-pv.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-130 -130 260 260'%3E%3Ccircle r='100' fill='none' stroke='%23ff3d58' stroke-width='18'/%3E%3Cpath d='M0 -74 Q9 -9 74 0 Q9 9 0 74 Q-9 9 -74 0 Q-9 -9 0 -74Z' fill='%23ff3d58'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Jua&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg0: #07080c;
+    --bg1: #140a10;
+    --card: #14161e;
+    --gray: #9aa0ab;
+    --soft: #c9ced8;
+    --bone: #f2f4f8;
+    --red: #ff3d58;
+    --orange: #ff9a3c;
+    --dots: #3a1018;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg0); overflow-x: hidden; }
+  body {
+    min-height: 100vh;
+    color: var(--bone);
+    font-family: 'Jua', system-ui, sans-serif;
+    background: linear-gradient(180deg, var(--bg0) 0%, #0c0a10 55%, var(--bg1) 100%);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .en { font-family: 'Barlow Condensed', system-ui, sans-serif; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; }
+
+  /* ---------- atmosphere: diagonal paper stripes, dot grids, embers, vignette ---------- */
+  .stripes, .vignette, #embers { position: fixed; inset: 0; pointer-events: none; }
+  .stripes { z-index: 0; background: repeating-linear-gradient(120deg, rgba(255,255,255,.022) 0 2px, transparent 2px 15px); }
+  .stripes::before, .stripes::after {
+    content: ""; position: absolute; width: 220px; height: 140px;
+    background: radial-gradient(circle, var(--dots) 2.2px, transparent 2.6px) 0 0 / 18px 18px;
+    opacity: .9;
+  }
+  .stripes::before { top: 64px; right: 4vw; }
+  .stripes::after { bottom: 48px; left: 3vw; }
+  #embers { z-index: 0; width: 100%; height: 100%; }
+  .vignette { z-index: 0; background: radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(0,0,0,.55) 100%); }
+
+  /* ---------- top HUD ---------- */
+  .hud {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px max(16px, 4vw) 0;
+    font-size: 15px; color: var(--bone);
+  }
+  .hud-l { display: flex; align-items: center; gap: 14px; }
+  .hud .bar { width: 6px; height: 26px; background: var(--red); display: block; }
+  .hud .blink { width: 9px; height: 9px; border-radius: 50%; background: var(--red); display: block; animation: blink 1.2s steps(1) infinite; box-shadow: 0 0 10px var(--red); }
+  .hud-r { color: var(--gray); }
+  @keyframes blink { 50% { opacity: .2; } }
+
+  /* ---------- hero: the end card of the PV ---------- */
+  .hero {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: 100px 16px 10px;
+  }
+  .ghost-wrap { position: absolute; top: 0; left: 0; right: 0; height: 1100px; overflow: hidden; pointer-events: none; z-index: 0; }
+  .ghost {
+    position: absolute; top: -40px; left: 50%; width: min(820px, 150vw); aspect-ratio: 1;
+    transform: translateX(-50%); color: var(--red); opacity: .07;
+  }
+  .ghost svg { animation: spin 90s linear infinite; }
+  .emblem { position: relative; width: 128px; height: 128px; color: var(--red); filter: drop-shadow(0 0 18px rgba(255,61,88,.45)); animation: rise 1.2s .1s both cubic-bezier(.2,.8,.2,1); }
+  .emblem .star { position: absolute; inset: 0; display: grid; place-items: center; }
+  .emblem .star svg { width: 62%; filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 26px rgba(255,140,150,.9)); animation: twinkle 3.2s ease-in-out infinite; }
+  .title {
+    margin-top: 18px; font-weight: 400; white-space: nowrap;
+    font-size: clamp(30px, 8.6vw, 88px); line-height: 1.12; letter-spacing: .01em;
+  }
+  .title span { --c: var(--bone); display: inline-block; animation: heat 2.2s both cubic-bezier(.2,.7,.2,1); }
+  .title .r { --c: var(--red); }
+  .title span:nth-child(1) { animation-delay: .45s; }
+  .title span:nth-child(2) { animation-delay: .57s; }
+  .title span:nth-child(3) { animation-delay: .69s; }
+  .title span:nth-child(4) { animation-delay: .81s; }
+  .redline { display: block; width: 220px; height: 4px; margin-top: 24px; background: var(--red); box-shadow: 0 0 14px rgba(255,61,88,.6); animation: line 1s 1.3s both cubic-bezier(.2,.8,.2,1); }
+  .kicker { margin-top: 16px; font-size: 14px; color: var(--gray); animation: fade 1s 1.6s both; }
+
+  /* ---------- the reel ---------- */
+  .reel {
+    position: relative; z-index: 1;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+    gap: 56px; padding: 48px 16px 72px;
+  }
+  .card {
+    --accent: var(--red);
+    position: relative; width: min(380px, 100%);
+    background: rgba(20,22,30,.92); border-radius: 28px; overflow: hidden;
+    padding: 18px 18px 22px 28px;
+    box-shadow: 0 30px 70px rgba(0,0,0,.6);
+    opacity: 0;
+    transition: box-shadow .4s;
+  }
+  .card { --py: 31.25%; }
+  .card.orange { --accent: var(--orange); --py: 53%; }
+  .card.in { animation: cardin .9s var(--d, 0s) both cubic-bezier(.2,.8,.2,1); }
+  .card:hover { box-shadow: 0 30px 70px rgba(0,0,0,.6), 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent), 0 0 46px color-mix(in srgb, var(--accent) 22%, transparent); }
+  .card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--accent); }
+  .head { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+  .tag { display: inline-block; padding: 5px 14px; background: var(--accent); color: #fff; transform: skewX(-14deg); font-weight: 700; letter-spacing: .14em; }
+  .tag > span { display: inline-block; transform: skewX(14deg); }
+  .file { color: var(--gray); }
+  .dur { margin-left: auto; color: var(--soft); letter-spacing: .12em; }
+
+  .frame { position: relative; margin-top: 16px; aspect-ratio: 9 / 16; border-radius: 18px; overflow: hidden; background: #000; }
+  .frame video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }
+  .shade { position: absolute; inset: 0; background: radial-gradient(circle at 50% var(--py, 50%), rgba(10,11,16,.12) 0, rgba(10,11,16,.5) 75%); transition: opacity .4s; pointer-events: none; }
+  .brk { position: absolute; width: 34px; height: 34px; border: 0 solid var(--accent); transition: opacity .4s; pointer-events: none; filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 70%, transparent)); }
+  .brk.tl { top: 14px; left: 14px; border-top-width: 3px; border-left-width: 3px; }
+  .brk.tr { top: 14px; right: 14px; border-top-width: 3px; border-right-width: 3px; }
+  .brk.bl { bottom: 14px; left: 14px; border-bottom-width: 3px; border-left-width: 3px; }
+  .brk.br { bottom: 14px; right: 14px; border-bottom-width: 3px; border-right-width: 3px; }
+  .play {
+    position: absolute; left: 50%; top: var(--py, 50%); width: 132px; height: 132px; transform: translate(-50%, -50%);
+    border: 0; border-radius: 50%; cursor: pointer; color: var(--accent);
+    background: radial-gradient(circle, rgba(10,11,16,.55) 0 52%, transparent 53%);
+    transition: opacity .4s, transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .play svg.ring { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent) 80%, transparent)); }
+  .play .tri { position: absolute; left: 50%; top: 50%; width: 34px; height: 38px; transform: translate(-38%, -50%); fill: #fff; filter: drop-shadow(0 0 8px rgba(255,255,255,.7)); }
+  .play:hover, .play:focus-visible { transform: translate(-50%, -50%) scale(1.07); outline: none; }
+  .play:hover .ticks, .play:focus-visible .ticks { animation-duration: 3s; }
+  .card.playing .play, .card.playing .brk, .card.playing .shade { opacity: 0; pointer-events: none; }
+  .card.playing .play { transform: translate(-50%, -50%) scale(.85); }
+
+  .name { margin-top: 18px; font-size: 30px; font-weight: 400; line-height: 1.2; }
+  .name .r { color: var(--red); }
+  .sub { margin-top: 6px; font-size: 13px; color: var(--gray); }
+
+  /* ---------- ring parts ---------- */
+  svg.ring { display: block; width: 100%; height: 100%; }
+  .emblem > [data-ring], .ghost > svg { position: absolute; inset: 0; }
+  svg .ticks { transform-box: view-box; transform-origin: 0 0; animation: spin 24s linear infinite; }
+  svg .arrows { transform-box: view-box; transform-origin: 0 0; animation: spin 48s linear infinite reverse; }
+
+  /* ---------- footer ---------- */
+  footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 8px 16px 56px; color: var(--soft); font-size: 18px; }
+  footer .mini { width: 34px; height: 34px; color: var(--red); }
+  footer .handle { font-family: 'Barlow Condensed', system-ui, sans-serif; font-weight: 600; letter-spacing: .12em; font-size: 19px; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes rise { from { opacity: 0; transform: scale(1.6); filter: drop-shadow(0 0 40px #fff); } }
+  @keyframes twinkle { 50% { transform: scale(.86) rotate(8deg); opacity: .85; } }
+  @keyframes heat {
+    0% { opacity: 0; transform: translateY(16px); color: #fff; text-shadow: 0 0 18px #fff, 0 0 44px rgba(255,120,130,.95); }
+    22% { opacity: 1; transform: none; color: #fff; text-shadow: 0 0 16px #fff, 0 0 40px rgba(255,120,130,.9); }
+    100% { opacity: 1; transform: none; color: var(--c); text-shadow: 0 0 0 rgba(255,120,130,0); }
+  }
+  @keyframes line { from { transform: scaleX(0); } }
+  @keyframes cardin { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+
+  @media (max-width: 820px) {
+    .reel { gap: 36px; padding-top: 48px; }
+    .hud { padding-top: 20px; font-size: 13px; }
+    .hero { padding-top: 88px; }
+    .stripes::before { top: 110px; right: -120px; }
+    .emblem { width: 112px; height: 112px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .card { opacity: 1; transform: none; }
+    #embers { display: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="embers" aria-hidden="true"></canvas>
+<div class="stripes" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<header class="hud en">
+  <div class="hud-l"><i class="bar"></i><span>Eclipse Protocol</span><i class="blink"></i></div>
+  <div class="hud-r">PV Archive</div>
+</header>
+
+<div class="ghost-wrap" aria-hidden="true"><div class="ghost" data-ring></div></div>
+
+<section class="hero">
+  <div class="emblem" aria-hidden="true">
+    <div data-ring></div>
+    <div class="star"><svg viewBox="-100 -100 200 200"><path d="M0 -100 Q12 -12 100 0 Q12 12 0 100 Q-12 12 -100 0 Q-12 -12 0 -100Z" fill="#ffe9ec"/></svg></div>
+  </div>
+  <h1 class="title"><span>날 쏴줘</span><span class="r">..</span><span>&nbsp;&#123;&#123;user&#125;&#125;</span><span class="r">.</span></h1>
+  <i class="redline" aria-hidden="true"></i>
+  <p class="kicker en">Special Military Academy · Official PV</p>
+</section>
+
+<main class="reel">
+  <article class="card">
+    <div class="head en"><span class="tag"><span>Main PV</span></span><span class="file">File 01</span><span class="dur">00:54</span></div>
+    <div class="frame">
+      <video src="main-pv.mp4" poster="main-pv.jpg" preload="none" playsinline></video>
+      <div class="shade"></div>
+      <i class="brk tl"></i><i class="brk tr"></i><i class="brk bl"></i><i class="brk br"></i>
+      <button class="play" aria-label="메인 PV 재생"><span data-ring></span><svg class="tri" viewBox="0 0 34 38"><path d="M2 2 L32 19 L2 36Z"/></svg></button>
+    </div>
+    <h2 class="name">날 쏴줘<span class="r">..</span> &#123;&#123;user&#125;&#125;<span class="r">.</span></h2>
+    <p class="sub en">Main Trailer</p>
+  </article>
+
+  <article class="card orange">
+    <div class="head en"><span class="tag"><span>Cadet 02</span></span><span class="file">File 02</span><span class="dur">00:33</span></div>
+    <div class="frame">
+      <video src="ara-pv.mp4" poster="ara-pv.jpg" preload="none" playsinline></video>
+      <div class="shade"></div>
+      <i class="brk tl"></i><i class="brk tr"></i><i class="brk bl"></i><i class="brk br"></i>
+      <button class="play" aria-label="채아라 캐릭터 PV 재생"><span data-ring></span><svg class="tri" viewBox="0 0 34 38"><path d="M2 2 L32 19 L2 36Z"/></svg></button>
+    </div>
+    <h2 class="name">채아라</h2>
+    <p class="sub en">Character PV · Chae A-ra</p>
+  </article>
+</main>
+
+<footer>
+  <span class="mini" data-ring data-plain></span>
+  <span>제작 로로</span>
+  <span class="handle">@ORORIH_O</span>
+</footer>
+
+<script>
+  // the academy emblem ring from the PV: double circle, 60 ticks (long every 30 deg), four arrowheads outside
+  function ringSVG(plain) {
+    const P = Math.PI / 180;
+    let s = '<svg class="ring" viewBox="-130 -130 260 260" aria-hidden="true">' +
+      '<circle r="100" fill="none" stroke="currentColor" stroke-width="' + (plain ? 14 : 4) + '"/>';
+    if (plain) return s + '</svg>';
+    s += '<circle r="84" fill="none" stroke="currentColor" stroke-width="1.8" opacity=".85"/><g class="ticks">';
+    for (let a = 0; a < 360; a += 6) {
+      const r2 = a % 30 ? 96 : 100, c = Math.cos(a * P), n = Math.sin(a * P);
+      s += '<line x1="' + (88 * c).toFixed(2) + '" y1="' + (88 * n).toFixed(2) + '" x2="' + (r2 * c).toFixed(2) +
+        '" y2="' + (r2 * n).toFixed(2) + '" stroke="currentColor" stroke-width="' + (a % 30 ? 1.3 : 2.4) + '"/>';
+    }
+    s += '</g><g class="arrows">';
+    for (let k = 0; k < 4; k++) {
+      const a = (45 + 90 * k) * P, pt = (r, t) => (r * Math.cos(t)).toFixed(2) + ',' + (r * Math.sin(t)).toFixed(2);
+      s += '<polygon fill="currentColor" points="' + pt(105, a) + ' ' + pt(119, a - .07) + ' ' + pt(119, a + .07) + '"/>';
+    }
+    return s + '</g></svg>';
+  }
+  document.querySelectorAll('[data-ring]').forEach(el => { el.innerHTML = ringSVG(el.hasAttribute('data-plain')); });
+
+  // one video at a time; the overlay comes back when a video ends
+  const cards = [...document.querySelectorAll('.card')];
+  const videos = cards.map(c => c.querySelector('video'));
+  cards.forEach(card => {
+    const v = card.querySelector('video');
+    card.querySelector('.play').addEventListener('click', () => {
+      if (v.ended) v.currentTime = 0;
+      v.controls = true;
+      v.play();
+    });
+    v.addEventListener('play', () => {
+      card.classList.add('playing');
+      videos.forEach(o => { if (o !== v && !o.paused) o.pause(); });
+    });
+    v.addEventListener('ended', () => {
+      card.classList.remove('playing');
+      v.controls = false;
+    });
+  });
+
+  // cards slide in as they enter the screen
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .15 });
+  cards.forEach((c, i) => { c.style.setProperty('--d', (0.1 + i * 0.15) + 's'); io.observe(c); });
+
+  // embers drifting up, like the PV's dark half
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cv = document.getElementById('embers'), ctx = cv.getContext('2d');
+    let W = 0, H = 0, dpr = 1, parts = [];
+    const spawn = (init) => ({
+      x: Math.random() * W, y: init ? Math.random() * H : H + 12 * dpr,
+      r: (0.7 + Math.random() * 1.9) * dpr, vy: (14 + Math.random() * 34) * dpr,
+      ph: Math.random() * 6.28, amp: (6 + Math.random() * 20) * dpr, hue: 6 + Math.random() * 26
+    });
+    function resize() {
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      W = cv.width = Math.round(innerWidth * dpr); H = cv.height = Math.round(innerHeight * dpr);
+      const n = Math.round(Math.min(70, Math.max(24, innerWidth * innerHeight / 20000)));
+      parts = Array.from({ length: n }, () => spawn(true));
+    }
+    resize(); addEventListener('resize', resize);
+    let last = performance.now();
+    function tick(now) {
+      const dt = Math.min(.05, (now - last) / 1000); last = now;
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalCompositeOperation = 'lighter';
+      for (const p of parts) {
+        p.y -= p.vy * dt; p.ph += dt * 1.3;
+        const x = p.x + Math.sin(p.ph) * p.amp;
+        const fl = .55 + .45 * Math.sin(now / 170 + p.ph * 3);
+        const a = Math.max(0, Math.min(1, p.y / H)) * .85 * fl;
+        ctx.fillStyle = 'hsla(' + p.hue + ',100%,60%,' + (a * .22).toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(x, p.y, p.r * 3.2, 0, 6.283); ctx.fill();
+        ctx.fillStyle = 'hsla(' + p.hue + ',100%,68%,' + a.toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(x, p.y, p.r, 0, 6.283); ctx.fill();
+        if (p.y < -12 * dpr) Object.assign(p, spawn(false));
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>
+</body>
+</html>
